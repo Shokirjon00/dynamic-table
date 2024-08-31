@@ -1,22 +1,26 @@
-<div class="table-container">
+<div class="p-relative">
   <div class="filter">
     <app-filter (filterChanged)="onFilterChanged($event)"></app-filter>
     <div class="column-controls" appOutsideClick (outsideClick)="handleOutsideClick()">
       <button (click)="toggleDropdown()" class="dropdown-button">
         <img ngSrc="assets/images/down.svg" class="down-icon"
-          [ngClass]="{'arrow-down': !dropdownVisible, 'arrow-up': dropdownVisible}"
-          alt="Toggle dropdown" height="6" width="8"/>
-        </button>
-        <div class="dropdown-menu" [class.show]="dropdownVisible">
-          @for (column of allColumns; track column) {
-            <label>
-              <input type="checkbox" [checked]="columnsToShow.includes(column)" (change)="toggleColumn(column)"/>
-              {{ column }}
-            </label>
-          }
-        </div>
+             [ngClass]="{'arrow-down': !dropdownVisible, 'arrow-up': dropdownVisible}"
+             alt="Toggle dropdown" height="6" width="8"/>
+      </button>
+      <div class="dropdown-menu" [class.show]="dropdownVisible">
+        @for (column of allColumns; track column) {
+          <label>
+            <input type="checkbox" [checked]="columnsToShow.includes(column)" (change)="toggleColumn(column)"/>
+            {{ column }}
+          </label>
+        }
       </div>
     </div>
+  </div>
+
+</div>
+
+<div class="table-container">
 
     <div class="table-wrapper">
       @if (filteredData.length > 0){
@@ -85,7 +89,6 @@
           </table>
         </ng-container>
       } @else {
-
         <div class="message">
           No data available for the current query.
         </div>

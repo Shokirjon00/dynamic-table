@@ -1,8 +1,10 @@
 @import 'variables';
 @import 'mixin';
 
-.table-container {
+
+.p-relative {
   position: relative;
+  z-index: 2;
 
   .filter {
     display: flex;
@@ -42,7 +44,7 @@
         border: 1px solid $color-border;
         border-radius: 4px;
         box-shadow: 0 4px 8px $color-shadow;
-        z-index: 1000;
+        z-index: 9999;
 
         label {
           display: flex;
@@ -67,6 +69,12 @@
       transform: rotate(180deg);
     }
   }
+}
+
+
+.table-container {
+  position: relative;
+  z-index: 1;
 }
 
 .message {
@@ -106,7 +114,7 @@
   overflow-x: auto;
   padding-bottom: 50px;
   min-height: auto;
-  max-height: 70vh;
+  max-height: 80vh;
 
   @include scrollbar;
 }
