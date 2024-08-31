@@ -3,6 +3,8 @@ import {FilterComponent} from "./filter/filter.component";
 import {TableComponent} from "./table/table.component";
 import {DataService} from "./service/data.service";
 import {DataRow} from "./interface/data";
+import {take} from "rxjs";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 
 @Component({
@@ -25,6 +27,7 @@ export class DynamicTableComponent {
 
   private getData(): void {
     this.dataService.getData()
+      .pipe(takeUntilDestroyed())
       .subscribe((res: any) => {
         this.datatable = res;
       });
