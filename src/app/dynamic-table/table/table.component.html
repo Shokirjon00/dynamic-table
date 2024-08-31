@@ -19,68 +19,77 @@
     </div>
 
     <div class="table-wrapper">
-      <table class="table">
-        <thead class="table-head">
-          <tr class="table-line">
-            @for (column of columnsToShow; track column) {
-              <th class="table-head-cell"
-                (click)="sortColumn(column)"
-                [ngStyle]="{ 'width': getColumnWidth(column) }">
-                {{ column }}
-              </th>
-            }
-          </tr>
-        </thead>
-        <tbody class="table-body">
-          @for (row of filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); track row) {
-            <tr class="table-line"
-              >
+      @if (filteredData.length > 0){
+        <ng-container>
+          <table class="table">
+            <thead class="table-head">
+            <tr class="table-line">
               @for (column of columnsToShow; track column) {
-                <td class="table-cell"
-                  [attr.data-label]="column"
-                  [ngStyle]="{ 'width': getColumnWidth(column) }">
-                  @if (isNestedColumn(column)) {
-                    @if (column === 'name') {
-                      {{ row[column]?.first }}, {{ row[column]?.last }}
-                    }
-                  } @else {
-                    @if (column === 'picture') {
-                      @if (row[column]) {
-                        <img [src]="row[column]" alt="Image" class="table-image"/>
-                      }
-                    } @else {
-                      @if (column === 'email') {
-                        @if (row[column]) {
-                          <a [href]="'mailto:' + row[column]" class="email-link">
-                            {{ row[column] }}
-                          </a>
-                        }
-                        @if (!row[column]) {
-                          {{ 'No email' }}
-                        }
-                      }
-                      @if (column !== 'email') {
-                        @if (Array.isArray(row[column])) {
-                          {{ row[column] }}
-                        } @else {
-                          @if (column === 'isActive') {
-                            <span [ngClass]="{'badge-active': row[column], 'badge-inactive': !row[column]}">
-                              {{ row[column] ? 'Active' : 'Inactive' }}
-                            </span>
-                          }
-                          @if (column !== 'isActive') {
-                            {{ row[column] }}
-                          }
-                        }
-                      }
-                    }
-                  }
-                </td>
+                <th class="table-head-cell"
+                    (click)="sortColumn(column)"
+                    [ngStyle]="{ 'width': getColumnWidth(column) }">
+                  {{ column }}
+                </th>
               }
             </tr>
-          }
-        </tbody>
-      </table>
+            </thead>
+            <tbody class="table-body">
+              @for (row of filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); track row) {
+                <tr class="table-line"
+                >
+                  @for (column of columnsToShow; track column) {
+                    <td class="table-cell"
+                        [attr.data-label]="column"
+                        [ngStyle]="{ 'width': getColumnWidth(column) }">
+                      @if (isNestedColumn(column)) {
+                        @if (column === 'name') {
+                          {{ row[column]?.first }}, {{ row[column]?.last }}
+                        }
+                      } @else {
+                        @if (column === 'picture') {
+                          @if (row[column]) {
+                            <img [src]="row[column]" alt="Image" class="table-image"/>
+                          }
+                        } @else {
+                          @if (column === 'email') {
+                            @if (row[column]) {
+                              <a [href]="'mailto:' + row[column]" class="email-link">
+                                {{ row[column] }}
+                              </a>
+                            }
+                            @if (!row[column]) {
+                              {{ 'No email' }}
+                            }
+                          }
+                          @if (column !== 'email') {
+                            @if (Array.isArray(row[column])) {
+                              {{ row[column] }}
+                            } @else {
+                              @if (column === 'isActive') {
+                                <span [ngClass]="{'badge-active': row[column], 'badge-inactive': !row[column]}">
+                              {{ row[column] ? 'Active' : 'Inactive' }}
+                            </span>
+                              }
+                              @if (column !== 'isActive') {
+                                {{ row[column] }}
+                              }
+                            }
+                          }
+                        }
+                      }
+                    </td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+        </ng-container>
+      } @else {
+
+        <div class="message">
+          No data available for the current query.
+        </div>
+      }
     </div>
 
     <app-pagination
