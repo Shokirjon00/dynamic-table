@@ -1,0 +1,138 @@
+// table.component.scss
+@import 'variables';
+@import 'mixin';
+
+.table-container {
+  position: relative;
+
+  .filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $color-background-light;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    padding: 15px;
+    border-bottom: 1px solid $color-border;
+
+    .column-controls {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+
+      .dropdown-button {
+        @include button-styles(transparent, inherit);
+        font-size: $btn-font-size;
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+
+        .down-icon {
+          width: $icon-width;
+          height: auto;
+          transition: transform 0.3s ease;
+        }
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: $color-white;
+        border: 1px solid $color-border;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px $color-shadow;
+        z-index: 1000;
+
+        label {
+          display: flex;
+          padding: 8px 12px;
+        }
+
+        input {
+          margin-right: 8px;
+        }
+
+        &.show {
+          display: block;
+        }
+      }
+    }
+
+    .arrow-down {
+      transform: rotate(0deg);
+    }
+
+    .arrow-up {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.badge-active {
+  display: inline-block;
+  padding: $badge-padding;
+  font-weight: 400;
+  color: $color-green;
+  background-color: $color-green-light;
+  border-radius: 0.25rem;
+  font-size: $font-size-small;
+  font-family: "Inter", sans-serif;
+}
+
+.badge-inactive {
+  display: inline-block;
+  padding: $badge-padding;
+  font-size: $font-size-small;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: $color-red;
+  background-color: $color-red-light;
+  border-radius: 0.25rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  padding-bottom: 50px;
+  min-height: auto;
+  max-height: 70vh;
+
+  @include scrollbar;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  .table-head {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #f4f7fca8;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+
+    .table-line {
+      .table-head-cell {
+        text-align: left;
+        word-wrap: break-word;
+        font-family: 'Inter';
+        text-transform: uppercase;
+        line-height: 16px;
+        font-size: 12px;
+        color: #464F60;
+        padding: 15px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .table-cell {
+    padding: 10px;
+    text-align: left;
+    word-wrap: break-word;
+    border-bottom: 1px solid $color-border;
+  }
+}

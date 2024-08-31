@@ -1,0 +1,12 @@
+<div class="filter-container">
+  <div class="input-wrapper">
+    <img ngSrc="assets/images/search-icon.svg" class="search" alt="" height="14" width="14">
+    <input [(ngModel)]="searchText"
+           (input)="onSearchTextChange()"
+           (keyup.enter)="onEnterPress()"
+           placeholder="Search..." />
+    @if (searchText){
+      <button class="clear-button" (click)="clearSearchText()">×</button>
+    }
+  </div>
+</div>

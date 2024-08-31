@@ -1,0 +1,22 @@
+<div class="pagination-controls">
+  <label class="page">
+    Rows per page:
+    <div class="custom-select-wrapper">
+      <select [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()" class="custom-select">
+        @for (option of itemsPerPageOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    </div>
+  </label>
+
+  <div class="group-btn">
+    <button class="p-btn" (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">
+      <img ngSrc="assets/images/previous.svg" alt="" height="8" width="6">
+    </button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button class="p-btn" (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">
+      <img ngSrc="assets/images/next.svg" alt="" height="10" width="6">
+    </button>
+  </div>
+</div>

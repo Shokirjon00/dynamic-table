@@ -1,0 +1,31 @@
+// mixins.scss
+
+@mixin button-styles($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-family: "Inter", sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 0;
+    height: $scrollbar-height;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-gray;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: $scrollbar-width !important;
+    background: $color-gray-dark;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color-gray-darker;
+  }
+}
