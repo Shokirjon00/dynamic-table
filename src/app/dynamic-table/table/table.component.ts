@@ -4,8 +4,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
 import { OutsideClickDirective } from "../../core/outside-click.directive";
-import { FilterComponent } from "../filter/filter.component";
-import {DataRow} from "../interface/data";
+import { FilterComponent } from "../shared/filter/filter.component";
+import { DataRow } from "../interface/data";
 
 @Component({
   standalone: true,
@@ -33,7 +33,8 @@ export class TableComponent implements OnChanges, OnInit {
     'tags': '120px',
   };
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -55,7 +56,7 @@ export class TableComponent implements OnChanges, OnInit {
     this.columnsToShow = initialColumns.length > 0 ? [...initialColumns] : [...this.allColumns];
     this.columnVisibility = {};
     this.allColumns.forEach((column, index) => {
-      this.columnVisibility[column] = { visible: this.columnsToShow.includes(column), index };
+      this.columnVisibility[column] = {visible: this.columnsToShow.includes(column), index};
     });
   }
 
