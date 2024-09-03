@@ -1,10 +1,4 @@
+<app-loader *ngIf="isLoading"></app-loader>
 <div class="app-container">
-  <ng-container *ngIf="isLoading">
-    <div class="loader-container">
-      <app-loader></app-loader>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="!isLoading">
     <app-table [data]="datatable"></app-table>
-  </ng-container>
 </div>

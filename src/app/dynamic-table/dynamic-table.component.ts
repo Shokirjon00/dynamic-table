@@ -31,6 +31,7 @@ export class DynamicTableComponent {
   }
 
   private getData(): void {
+    this.isLoading = true
     this.dataService.getData()
       .pipe(
         finalize(() => this.isLoading = false),
