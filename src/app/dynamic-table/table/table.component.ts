@@ -4,8 +4,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
 import { OutsideClickDirective } from "../../core/outside-click.directive";
-import { FilterComponent } from "../shared/filter/filter.component";
 import { DataRow } from "../interface/data";
+import { FilterComponent } from "../../shared/filter/filter.component";
 
 @Component({
   standalone: true,

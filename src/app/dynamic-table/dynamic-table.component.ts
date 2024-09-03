@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { FilterComponent } from "./shared/filter/filter.component";
 import { TableComponent } from "./table/table.component";
 import { DataService } from "./service/data.service";
 import { DataRow } from "./interface/data";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { finalize } from "rxjs";
-import { LoaderComponent } from "./shared/loader/loader.component";
+import { CommonModule } from "@angular/common";
+import { LoaderComponent } from "../shared/loader/loader.component";
+import { FilterComponent } from "../shared/filter/filter.component";
 
 
 @Component({
@@ -14,7 +15,8 @@ import { LoaderComponent } from "./shared/loader/loader.component";
   imports: [
     FilterComponent,
     TableComponent,
-    LoaderComponent
+    LoaderComponent,
+    CommonModule
   ],
   providers: [DataService],
   templateUrl: './dynamic-table.component.html',
